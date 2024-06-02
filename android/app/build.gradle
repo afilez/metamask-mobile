@@ -172,13 +172,14 @@ def ndkPath() {
 
 android {
     ndkVersion rootProject.ext.ndkVersion
-
     compileSdkVersion rootProject.ext.compileSdkVersion
+
 
     namespace"io.metamask"
 
     defaultConfig {
-        applicationId "io.metamask"
+        manifestPlaceholders
+        applicationId 'org.hizoco'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1333
@@ -247,18 +248,18 @@ android {
           qa {
             dimension "version"
             applicationIdSuffix ".qa"
-            applicationId "io.metamask"
+            applicationId 'org.hizoco'
             signingConfig signingConfigs.qa
           }
           prod {
             dimension "version"
-            applicationId "io.metamask"
+            applicationId 'org.hizoco'
             signingConfig signingConfigs.release
           }
           flask {
             dimension "version"
             applicationIdSuffix ".flask"
-            applicationId "io.metamask"
+            applicationId 'org.hizoco'
             signingConfig signingConfigs.flask
           }
     	  }

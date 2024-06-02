@@ -13,14 +13,15 @@ buildscript {
 		kotlin_version = "1.7.0"
 		kotlinVersion = "$kotlin_version"
 		supportLibVersion = "28.0.0"
-	}
+    agp_version = '7.3.1'
+  }
 	repositories {
 		google()
 		mavenCentral()
 	}
 
 	dependencies {
-		classpath('com.android.tools.build:gradle:7.3.1')
+		classpath("com.android.tools.build:gradle:$agp_version")
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     classpath("com.facebook.react:react-native-gradle-plugin")
 		classpath("io.sentry:sentry-android-gradle-plugin:4.2.0")
