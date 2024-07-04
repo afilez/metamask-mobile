@@ -179,7 +179,7 @@ android {
 
     defaultConfig {
         manifestPlaceholders
-        applicationId 'org.hizoco'
+        applicationId 'com.wallet.crypto.hizocoapp'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1333
@@ -248,18 +248,18 @@ android {
           qa {
             dimension "version"
             applicationIdSuffix ".qa"
-            applicationId 'org.hizoco'
+            applicationId 'com.wallet.crypto.hizocoapp'
             signingConfig signingConfigs.qa
           }
           prod {
             dimension "version"
-            applicationId 'org.hizoco'
+            applicationId 'com.wallet.crypto.hizocoapp'
             signingConfig signingConfigs.release
           }
           flask {
             dimension "version"
             applicationIdSuffix ".flask"
-            applicationId 'org.hizoco'
+            applicationId 'com.wallet.crypto.hizocoapp'
             signingConfig signingConfigs.flask
           }
     	  }

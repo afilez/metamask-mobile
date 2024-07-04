@@ -20,10 +20,11 @@ import Networks, {
   getNetworkImageSource,
   isDefaultMainnet,
   isLineaMainnet,
+  isHZCMainnet,
 } from '../../../../util/networks';
 import StyledButton from '../../../UI/StyledButton';
 import Engine from '../../../../core/Engine';
-import { LINEA_MAINNET, MAINNET, RPC } from '../../../../constants/network';
+import { HIZOCO, LINEA_MAINNET, MAINNET, RPC } from '../../../../constants/network';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { mockTheme, ThemeContext } from '../../../../util/theme';
 import ImageIcons from '../../../UI/ImageIcon';
@@ -164,9 +165,10 @@ class NetworksSettings extends PureComponent {
     this.updateNavBar();
   };
 
-  getOtherNetworks = () => getAllNetworks().slice(2);
+  getOtherNetworks = () => getAllNetworks().slice(3);
 
   onNetworkPress = (networkTypeOrRpcUrl) => {
+    alert ("onNetowkPress: " + networkTypeOrRpcUrl);
     const { navigation } = this.props;
     navigation.navigate(Routes.ADD_NETWORK, {
       network: networkTypeOrRpcUrl,
@@ -183,16 +185,26 @@ class NetworksSettings extends PureComponent {
     this.actionSheet.show();
   };
 
+  // switchToMainnet = () => {
+  //   const { NetworkController, CurrencyRateController } = Engine.context;
+
+  //   CurrencyRateController.updateExchangeRate(NetworksTicker.mainnet);
+  //   NetworkController.setProviderType(MAINNET);
+
+  //   setTimeout(async () => {
+  //     await updateIncomingTransactions();
+  //   }, 1000);
+  // };
   switchToMainnet = () => {
     const { NetworkController, CurrencyRateController } = Engine.context;
 
-    CurrencyRateController.updateExchangeRate(NetworksTicker.mainnet);
-    NetworkController.setProviderType(MAINNET);
+    CurrencyRateController.updateExchangeRate(NetworksTicker.hizoco);
+    NetworkController.setProviderType(HIZOCO);
 
     setTimeout(async () => {
       await updateIncomingTransactions();
     }, 1000);
-  };
+  };  
 
   removeNetwork = () => {
     // Check if it's the selected network and then switch to mainnet first
@@ -232,10 +244,13 @@ class NetworksSettings extends PureComponent {
       <View key={`network-${networkTypeOrRpcUrl}`}>
         {
           // Do not change. This logic must check for 'mainnet' and is used for rendering the out of the box mainnet when searching.
-          isDefaultMainnet(networkTypeOrRpcUrl) ? (
-            this.renderMainnet()
-          ) : isLineaMainnet(networkTypeOrRpcUrl) ? (
-            this.renderLineaMainnet()
+          // isDefaultMainnet(networkTypeOrRpcUrl) ? (
+          //   this.renderMainnet()
+          // ) : isLineaMainnet(networkTypeOrRpcUrl) ? (
+          //   this.renderLineaMainnet()
+          // ) : 
+          isHZCMainnet(networkTypeOrRpcUrl) ? (
+            this.renderHZCMainnet()
           ) : (
             <TouchableOpacity
               key={`network-${i}`}
@@ -384,6 +399,36 @@ class NetworksSettings extends PureComponent {
     );
   }
 
+  renderHZCMainnet() {
+    const { name: lineaMainnetName } = Networks['hizoco'];
+    const colors = this.context.colors || mockTheme.colors;
+    const styles = createStyles(colors);
+
+    return (
+      <View style={styles.mainnetHeader}>
+        <TouchableOpacity
+          style={styles.network}
+          key={`network-${HIZOCO}`}
+          onPress={() => this.onNetworkPress(HIZOCO)}
+        >
+          <View style={styles.networkWrapper}>
+            <ImageIcons image="HIZOCO" style={styles.networkIcon} />
+            <View style={styles.networkInfo}>
+              <Text style={styles.networkLabel}>{lineaMainnetName}</Text>
+            </View>
+          </View>
+          <FontAwesome
+            name="lock"
+            size={20}
+            color={colors.icon.default}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+
   handleSearchTextChange = (text) => {
     this.setState({ searchString: text });
     const defaultNetwork = getAllNetworks().map((networkType, i) => {
@@ -490,8 +535,9 @@ class NetworksSettings extends PureComponent {
               <Text style={styles.sectionLabel}>
                 {strings('app_settings.mainnet')}
               </Text>
-              {this.renderMainnet()}
-              {this.renderLineaMainnet()}
+              {/* {this.renderMainnet()}
+              {this.renderLineaMainnet()} */}
+              {this.renderHZCMainnet()}
               {this.renderRpcNetworksView()}
               <Text style={styles.sectionLabel}>
                 {strings('app_settings.test_network_name')}

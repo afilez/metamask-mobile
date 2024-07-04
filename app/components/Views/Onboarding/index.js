@@ -441,7 +441,7 @@ class Onboarding extends PureComponent {
                 <View style={styles.foxWrapper}>
                   {Device.isAndroid() ? (
                     <Image
-                      source={require('../../../images/fox.png')}
+                      source={require('../../../images/zoco_68.png')}
                       style={styles.image}
                       resizeMethod={'auto'}
                     />

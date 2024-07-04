@@ -31,6 +31,7 @@ import {
   getDecimalChainId,
   getTestNetImageByChainId,
   isLineaMainnetByChainId,
+  isHZCByChainId,
   isMainnetByChainId,
   isTestNet,
 } from '../../../util/networks';
@@ -407,6 +408,7 @@ const Tokens: React.FC<TokensI> = ({ tokens }) => {
 
     const isMainnet = isMainnetByChainId(chainId);
     const isLineaMainnet = isLineaMainnetByChainId(chainId);
+    const isHZCMainnet = isHZCByChainId(chainId);
 
     const NetworkBadgeSource = () => {
       if (isTestNet(chainId)) return getTestNetImageByChainId(chainId);
@@ -414,6 +416,10 @@ const Tokens: React.FC<TokensI> = ({ tokens }) => {
       if (isMainnet) return images.ETHEREUM;
 
       if (isLineaMainnet) return images['LINEA-MAINNET'];
+
+      //TODO: update image
+      if (isHZCMainnet) return images['HIZOCO'];
+
 
       return ticker ? images[ticker] : undefined;
     };

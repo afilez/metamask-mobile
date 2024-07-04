@@ -603,7 +603,7 @@ class Approve extends PureComponent {
         !error?.message.startsWith(STX_NO_HASH_ERROR)
       ) {
         Alert.alert(
-          strings('transactions.transaction_error'),
+          strings('transactions.transaction_error' + " Approve"),
           error && error.message,
           [{ text: 'OK' }],
         );

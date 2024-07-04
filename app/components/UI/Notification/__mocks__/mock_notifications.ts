@@ -45,6 +45,7 @@ const ETH_IMAGE_URL =
 const STETH_IMAGE_URL =
   'https://raw.githubusercontent.com/MetaMask/contract-metadata/master/images/stETH.svg';
 import SVG_MM_LOGO_PATH from '../../../../images/fox.svg';
+import PNG_MM_LOGO_PATH from '../../../../images/zoco_68.png';
 
 const MOCK_NOTIFICATIONS: Notification[] = [
   {
@@ -58,7 +59,7 @@ const MOCK_NOTIFICATIONS: Notification[] = [
       category: 'Announcement',
       image: {
         file: {
-          url: SVG_MM_LOGO_PATH,
+          url: PNG_MM_LOGO_PATH,
         },
       },
       link: {

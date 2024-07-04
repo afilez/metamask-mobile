@@ -41,6 +41,7 @@ export const MM_ETHERSCAN_URL = 'https://etherscamdb.info/domain/meta-mask.com';
 export const LINEA_GOERLI_BLOCK_EXPLORER = 'https://goerli.lineascan.build';
 export const LINEA_SEPOLIA_BLOCK_EXPLORER = 'https://sepolia.lineascan.build';
 export const LINEA_MAINNET_BLOCK_EXPLORER = 'https://lineascan.build';
+export const HIZOCO_BLOCK_EXPLORER = 'https://hizoco.net:3001';
 
 // Phishing
 export const MM_PHISH_DETECT_URL =

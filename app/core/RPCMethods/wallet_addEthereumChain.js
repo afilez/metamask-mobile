@@ -113,7 +113,7 @@ const wallet_addEthereumChain = async ({
   }
 
   if (Object.values(ChainId).find((value) => value === _chainId)) {
-    throw rpcErrors.invalidParams(`May not specify default MetaMask chain.`);
+    throw rpcErrors.invalidParams(`May not specify default MetaMask chain.` + 'v:' + value + ',_chainID:' + _chainId);
   }
 
   const networkConfigurations = selectNetworkConfigurations(store.getState());

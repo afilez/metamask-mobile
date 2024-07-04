@@ -940,7 +940,7 @@ class Confirm extends PureComponent {
         !error?.message.startsWith(STX_NO_HASH_ERROR)
       ) {
         Alert.alert(
-          strings('transactions.transaction_error'),
+          strings('transactions.transaction_error' + "Confirm"),
           error && error.message,
           [{ text: 'OK' }],
         );

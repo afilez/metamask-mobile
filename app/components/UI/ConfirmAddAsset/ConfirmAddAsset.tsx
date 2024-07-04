@@ -17,6 +17,7 @@ import AssetIcon from '../AssetIcon';
 import {
   getTestNetImageByChainId,
   isLineaMainnet,
+  isHZCMainnet,
   isMainNet,
   isTestNet,
 } from '../../../util/networks';
@@ -166,6 +167,9 @@ const ConfirmAddAsset = () => {
     if (isMainNet(chainId)) return images.ETHEREUM;
 
     if (isLineaMainnet(chainId)) return images['LINEA-MAINNET'];
+
+    //TODO: update image
+    if (isHZCMainnet(chainId)) return images['HIZOCO'];
 
     return ticker ? images[ticker] : undefined;
   };

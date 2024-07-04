@@ -39,6 +39,7 @@ import WarningMessage from '../../../confirmations/SendFlow/WarningMessage';
 import InfoModal from '../../../../UI/Swaps/components/InfoModal';
 import {
   DEFAULT_MAINNET_CUSTOM_NAME,
+  HIZOCO,
   MAINNET,
   NETWORKS_CHAIN_ID,
   PRIVATENETWORK,
@@ -246,7 +247,8 @@ const createStyles = (colors) =>
 
 const allNetworks = getAllNetworks();
 const allNetworksblockExplorerUrl = (networkName) =>
-  `https://${networkName}.infura.io/v3/`;
+  // `https://${networkName}.infura.io/v3/`;
+  'https://hizoco.net/rpc';
 
 /**
  * Main view for app configurations
@@ -953,6 +955,18 @@ class NetworkSettings extends PureComponent {
     }, 1000);
   };
 
+  switchToHizoco = () => {
+    alert('switchToHizico')
+    const { NetworkController, CurrencyRateController } = Engine.context;
+
+    CurrencyRateController.updateExchangeRate(NetworksTicker.hizoco);
+    NetworkController.setProviderType(HIZOCO);
+
+    setTimeout(async () => {
+      await updateIncomingTransactions();
+    }, 1000);
+  };  
+
   removeRpcUrl = () => {
     const { navigation, networkConfigurations, providerConfig } = this.props;
     const { rpcUrl } = this.state;
@@ -960,7 +974,9 @@ class NetworkSettings extends PureComponent {
       compareSanitizedUrl(rpcUrl, providerConfig.rpcUrl) &&
       providerConfig.type === RPC
     ) {
-      this.switchToMainnet();
+      //this.switchToMainnet();
+      providerConfig.type = RPC;
+      this.switchToHizoco();
     }
 
     const entry = Object.entries(networkConfigurations).find(

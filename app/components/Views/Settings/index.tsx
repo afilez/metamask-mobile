@@ -72,34 +72,34 @@ const Settings = () => {
     navigation.navigate('NetworksSettings');
   };
 
-  const onPressOnRamp = () => {
-    trackEvent(MetaMetricsEvents.ONRAMP_SETTINGS_CLICKED);
-    navigation.navigate(Routes.RAMP.SETTINGS);
-  };
+  // const onPressOnRamp = () => {
+  //   trackEvent(MetaMetricsEvents.ONRAMP_SETTINGS_CLICKED);
+  //   navigation.navigate(Routes.RAMP.SETTINGS);
+  // };
 
-  const onPressExperimental = () => {
-    trackEvent(MetaMetricsEvents.SETTINGS_EXPERIMENTAL);
-    navigation.navigate('ExperimentalSettings');
-  };
+  // const onPressExperimental = () => {
+  //   trackEvent(MetaMetricsEvents.SETTINGS_EXPERIMENTAL);
+  //   navigation.navigate('ExperimentalSettings');
+  // };
 
-  const onPressInfo = () => {
-    trackEvent(MetaMetricsEvents.SETTINGS_ABOUT);
-    navigation.navigate('CompanySettings');
-  };
+  // const onPressInfo = () => {
+  //   trackEvent(MetaMetricsEvents.SETTINGS_ABOUT);
+  //   navigation.navigate('CompanySettings');
+  // };
 
   const onPressContacts = () => {
     navigation.navigate('ContactsSettings');
   };
 
-  const goToBrowserUrl = (url: string, title: string) => {
-    navigation.navigate('Webview', {
-      screen: 'SimpleWebview',
-      params: {
-        url,
-        title,
-      },
-    });
-  };
+  // const goToBrowserUrl = (url: string, title: string) => {
+  //   navigation.navigate('Webview', {
+  //     screen: 'SimpleWebview',
+  //     params: {
+  //       url,
+  //       title,
+  //     },
+  //   });
+  // };
 
   ///: BEGIN:ONLY_INCLUDE_IF(snaps)
   const onPressSnaps = () => {
@@ -107,21 +107,21 @@ const Settings = () => {
   };
   ///: END:ONLY_INCLUDE_IF
 
-  const submitFeedback = () => {
-    trackEvent(MetaMetricsEvents.NAVIGATION_TAPS_SEND_FEEDBACK);
-    goToBrowserUrl(
-      'https://community.metamask.io/c/feature-requests-ideas/',
-      strings('app_settings.request_feature'),
-    );
-  };
+  // const submitFeedback = () => {
+  //   trackEvent(MetaMetricsEvents.NAVIGATION_TAPS_SEND_FEEDBACK);
+  //   goToBrowserUrl(
+  //     'https://community.metamask.io/c/feature-requests-ideas/',
+  //     strings('app_settings.request_feature'),
+  //   );
+  // };
 
-  const showHelp = () => {
-    goToBrowserUrl(
-      'https://support.metamask.io',
-      strings('app_settings.contact_support'),
-    );
-    trackEvent(MetaMetricsEvents.NAVIGATION_TAPS_GET_HELP);
-  };
+  // const showHelp = () => {
+  //   goToBrowserUrl(
+  //     'https://support.metamask.io',
+  //     strings('app_settings.contact_support'),
+  //   );
+  //   trackEvent(MetaMetricsEvents.NAVIGATION_TAPS_GET_HELP);
+  // };
 
   const onPressLock = async () => {
     await Authentication.lockApp();
@@ -160,10 +160,10 @@ const Settings = () => {
     trackEvent(MetaMetricsEvents.NAVIGATION_TAPS_LOGOUT);
   };
 
-  let aboutMetaMaskTitle = strings('app_settings.info_title');
+  // let aboutMetaMaskTitle = strings('app_settings.info_title');
 
   ///: BEGIN:ONLY_INCLUDE_IF(flask)
-  aboutMetaMaskTitle = strings('app_settings.info_title_flask');
+  // aboutMetaMaskTitle = strings('app_settings.info_title_flask');
   ///: END:ONLY_INCLUDE_IF
 
   return (
@@ -221,35 +221,36 @@ const Settings = () => {
       {
         ///: END:ONLY_INCLUDE_IF
       }
-      <SettingsDrawer
+
+      {/* <SettingsDrawer
         title={strings('app_settings.fiat_on_ramp.title')}
         description={strings('app_settings.fiat_on_ramp.description')}
         onPress={onPressOnRamp}
         testID={SettingsViewSelectorsIDs.ON_RAMP}
-      />
-      <SettingsDrawer
+      /> */}
+      {/* <SettingsDrawer
         title={strings('app_settings.experimental_title')}
         description={strings('app_settings.experimental_desc')}
         onPress={onPressExperimental}
         testID={SettingsViewSelectorsIDs.EXPERIMENTAL}
-      />
-      <SettingsDrawer
+      /> */}
+      {/* <SettingsDrawer
         title={aboutMetaMaskTitle}
         onPress={onPressInfo}
         testID={SettingsViewSelectorsIDs.ABOUT_METAMASK}
-      />
-      <SettingsDrawer
+      /> */}
+      {/* <SettingsDrawer
         title={strings('app_settings.request_feature')}
         onPress={submitFeedback}
         renderArrowRight={false}
         testID={SettingsViewSelectorsIDs.REQUEST}
-      />
-      <SettingsDrawer
+      /> */}
+      {/* <SettingsDrawer
         title={strings('app_settings.contact_support')}
         onPress={showHelp}
         renderArrowRight={false}
         testID={SettingsViewSelectorsIDs.CONTACT}
-      />
+      /> */}
       <SettingsDrawer
         title={strings('drawer.lock')}
         onPress={lock}

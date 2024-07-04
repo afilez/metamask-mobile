@@ -19,7 +19,7 @@ import Text, {
   TextVariant,
 } from '../../../../component-library/components/Texts/Text';
 import AppConstants from '../../../../core/AppConstants';
-import METAMASK_FOX from '../../../../images/fox.png';
+import METAMASK_FOX from '../../../../images/zoco_68.png';
 import {
   selectNetworkName,
   selectNetworkImageSource,

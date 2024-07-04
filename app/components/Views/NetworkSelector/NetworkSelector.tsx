@@ -1,4 +1,5 @@
 // Third party dependencies.
+// 主界面中的网络选择器
 import React, { useRef } from 'react';
 import { Switch, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -34,6 +35,7 @@ import {
   LINEA_SEPOLIA,
   MAINNET,
   SEPOLIA,
+  HIZOCO,
 } from '../../../constants/network';
 import Button from '../../../component-library/components/Buttons/Button/Button';
 import {
@@ -71,11 +73,13 @@ const NetworkSelector = () => {
 
   // The only possible value types are mainnet, linea-mainnet, sepolia and linea-sepolia
   const onNetworkChange = (type: string) => {
+    alert('onNetworkChange : ' + type);
     const {
       NetworkController,
       CurrencyRateController,
       AccountTrackerController,
     } = Engine.context;
+
 
     let ticker = type;
     if (type === LINEA_SEPOLIA) {
@@ -83,6 +87,9 @@ const NetworkSelector = () => {
     }
     if (type === SEPOLIA) {
       ticker = TESTNET_TICKER_SYMBOLS.SEPOLIA;
+    }
+    if (type === HIZOCO) {
+      ticker = TESTNET_TICKER_SYMBOLS.HZC;
     }
 
     CurrencyRateController.updateExchangeRate(ticker);
@@ -166,6 +173,25 @@ const NetworkSelector = () => {
     );
   };
 
+  const renderHizocoMainnet = () => {
+    const { name: hizocoMainnetName, chainId } = Networks['hizoco'];
+    return (
+      <Cell
+        variant={CellVariant.Select}
+        title={hizocoMainnetName}
+        avatarProps={{
+          variant: AvatarVariant.Network,
+          name: hizocoMainnetName,
+          //TODO: update image
+          imageSource: images['HIZOCO'],
+        }}
+        isSelected={chainId === providerConfig.chainId}
+        onPress={() => onNetworkChange(HIZOCO)}
+      />
+    );
+  };
+
+
   const renderRpcNetworks = () =>
     Object.values(networkConfigurations).map(
       ({ nickname, rpcUrl, chainId }) => {
@@ -195,7 +221,7 @@ const NetworkSelector = () => {
     );
 
   const renderOtherNetworks = () => {
-    const getOtherNetworks = () => getAllNetworks().slice(2);
+    const getOtherNetworks = () => getAllNetworks().slice(3);
     return getOtherNetworks().map((networkType) => {
       // TODO: Provide correct types for network.
       const { name, imageSource, chainId } = (Networks as any)[networkType];
@@ -253,8 +279,9 @@ const NetworkSelector = () => {
     <BottomSheet ref={sheetRef}>
       <SheetHeader title={strings('networks.select_network')} />
       <ScrollView testID={NetworkListModalSelectorsIDs.SCROLL}>
-        {renderMainnet()}
-        {renderLineaMainnet()}
+        {/* {renderMainnet()} */}
+        {/* {renderLineaMainnet()} */}
+        {renderHizocoMainnet()}
         {renderRpcNetworks()}
         {renderTestNetworksSwitch()}
         {showTestNetworks && renderOtherNetworks()}

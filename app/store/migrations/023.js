@@ -136,6 +136,7 @@ export default function migrate(state) {
   }, new Set());
   const builtInNetworkChainIdsAsOfMigration22 = [
     '1',
+    '80096',
     '5',
     '11155111',
     '59140',

@@ -18,6 +18,7 @@ import {
   SEPOLIA,
   LINEA_GOERLI,
   LINEA_MAINNET,
+  HIZOCO,
   LINEA_SEPOLIA,
 } from '../../../app/constants/network';
 import { NetworkSwitchErrorType } from '../../../app/constants/error';
@@ -61,6 +62,7 @@ describe('network-utils', () => {
       expect(allNetworks.includes(SEPOLIA)).toEqual(true);
       expect(allNetworks.includes(LINEA_GOERLI)).toEqual(true);
       expect(allNetworks.includes(LINEA_SEPOLIA)).toEqual(true);
+      expect(allNetworks.includes(HIZOCO)).toEqual(true);
       expect(allNetworks.includes(LINEA_MAINNET)).toEqual(true);
     });
     it('should exclude rpc', () => {

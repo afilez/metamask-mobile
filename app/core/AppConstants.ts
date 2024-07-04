@@ -158,7 +158,7 @@ export default {
   },
   BUNDLE_IDS: {
     IOS: 'io.metamask.MetaMask',
-    ANDROID: 'io.metamask',
+    ANDROID: 'com.wallet.crypto.hizocoapp',
   },
   LEAST_SUPPORTED_ANDROID_API_LEVEL: 29,
   ADD_CUSTOM_NETWORK_POPULAR_TAB_ID: 'popular-tab',

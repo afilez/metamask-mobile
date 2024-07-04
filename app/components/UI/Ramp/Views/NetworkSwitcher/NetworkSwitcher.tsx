@@ -138,7 +138,7 @@ function NetworkSwitcher() {
     }
   }, [isCurrentNetworkRampSupported, navigation]);
 
-  const switchToMainnet = useCallback((type: 'mainnet' | 'linea-mainnet') => {
+  const switchToMainnet = useCallback((type: 'mainnet' | 'linea-mainnet'| 'hizoco') => {
     const { NetworkController } = Engine.context;
     NetworkController.setProviderType(type as NetworkType);
   }, []);
@@ -272,7 +272,7 @@ function NetworkSwitcher() {
                           imageSource={imageIcons['LINEA-MAINNET']}
                         />
                       </View>
-                      <Text bold>Linea Main Network</Text>
+                      <Text bold>Linea Main Network(nsw.tsx)</Text>
                     </View>
                     <View style={customNetworkStyle.popularWrapper}>
                       <Text link>{strings('networks.switch')}</Text>

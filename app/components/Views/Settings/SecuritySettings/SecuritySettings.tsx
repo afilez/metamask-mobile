@@ -893,7 +893,7 @@ const Settings: React.FC = () => {
 
     const renderOtherNetworks = () => {
       const NetworksTyped = Networks as NetworksI;
-      const getOtherNetworks = () => getAllNetworks().slice(2);
+      const getOtherNetworks = () => getAllNetworks().slice(3);
       return getOtherNetworks().map((networkType) => {
         const { name, imageSource, chainId } = NetworksTyped[networkType];
         if (!chainId) return null;

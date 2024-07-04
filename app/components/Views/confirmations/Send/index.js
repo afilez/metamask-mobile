@@ -625,7 +625,7 @@ class Send extends PureComponent {
         !error?.message.startsWith(STX_NO_HASH_ERROR)
       ) {
         Alert.alert(
-          strings('transactions.transaction_error'),
+          strings('transactions.transaction_error') + ' Send ',
           error && error.message,
           [{ text: strings('navigation.ok') }],
         );

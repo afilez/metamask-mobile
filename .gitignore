@@ -113,3 +113,8 @@ app/lib/ppom/ppom.html.js
 
 # ccache
 ccache
+android/keystores/release.jks
+android/app/flask/debug/app-flask-debug.apk
+.yarn/releases/yarn-1.22.22.cjs
+.yarnrc.yml
+package.json.orgin

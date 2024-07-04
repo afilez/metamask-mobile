@@ -13,7 +13,7 @@ import { IconName } from '../../../../component-library/components/Icons/Icon';
 import RemoteImage from '../../../../components/Base/RemoteImage';
 import { ETHEREUM_LOGO } from '../../../../constants/urls';
 /* eslint-disable import/no-commonjs */
-const metamask_fox = require('../../../../images/fox.png'); // eslint-disable-line
+const metamask_fox = require('../../../../images/zoco_68.png'); // eslint-disable-line
 interface NotificationIconProps {
   notificationType: TRIGGER_TYPES;
   styles: any;

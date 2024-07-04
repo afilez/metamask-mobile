@@ -12,6 +12,7 @@ import {
   LINEA_GOERLI,
   LINEA_MAINNET,
   LINEA_SEPOLIA,
+  HIZOCO,
 } from '../../../app/constants/network';
 import { NetworkSwitchErrorType } from '../../../app/constants/error';
 import {
@@ -35,6 +36,7 @@ const ethLogo = require('../../images/eth-logo-new.png');
 const sepoliaLogo = require('../../images/sepolia-logo-dark.png');
 const lineaTestnetLogo = require('../../images/linea-testnet-logo.png');
 const lineaMainnetLogo = require('../../images/linea-mainnet-logo.png');
+const hizocoMainnetLogo = require('../../images/zoco_68.png');
 
 /* eslint-enable */
 import { PopularList, UnpopularNetworkList } from './customNetworks';
@@ -55,8 +57,17 @@ import { getNonceLock } from '../../util/transaction-controller';
  * navbar and the network switcher.
  */
 export const NetworkList = {
+  [HIZOCO]: {
+    name: 'HiZoco 主网',
+    shortName: 'HZC',
+    networkId: 80096,
+    chainId: toHex('80096'),
+    color: '#3cc29e',
+    networkType: 'hizoco',
+    imageSource: hizocoMainnetLogo,
+  },     
   [MAINNET]: {
-    name: 'Ethereum Main Network',
+    name: 'Ethereum 主网',
     shortName: 'Ethereum',
     networkId: 1,
     chainId: toHex('1'),
@@ -65,7 +76,7 @@ export const NetworkList = {
     imageSource: ethLogo,
   },
   [LINEA_MAINNET]: {
-    name: 'Linea Main Network',
+    name: 'Linea Main Network(app/utils/network)',
     shortName: 'Linea',
     networkId: 59144,
     chainId: toHex('59144'),
@@ -99,7 +110,7 @@ export const NetworkList = {
     color: '#61dfff',
     networkType: 'linea-sepolia',
     imageSource: lineaTestnetLogo,
-  },
+  }, 
   [RPC]: {
     name: 'Private Network',
     shortName: 'Private',
@@ -111,6 +122,7 @@ export const NetworkList = {
 const NetworkListKeys = Object.keys(NetworkList);
 
 export const BLOCKAID_SUPPORTED_CHAIN_IDS = [
+  NETWORKS_CHAIN_ID.HIZOCO,    
   NETWORKS_CHAIN_ID.MAINNET,
   NETWORKS_CHAIN_ID.BSC,
   NETWORKS_CHAIN_ID.BASE,
@@ -124,6 +136,7 @@ export const BLOCKAID_SUPPORTED_CHAIN_IDS = [
 ];
 
 export const BLOCKAID_SUPPORTED_NETWORK_NAMES = {
+  [NETWORKS_CHAIN_ID.HIZOCO]: 'HiZoco Mainnet',  
   [NETWORKS_CHAIN_ID.MAINNET]: 'Ethereum Mainnet',
   [NETWORKS_CHAIN_ID.BSC]: 'Binance Smart Chain',
   [NETWORKS_CHAIN_ID.BASE]: 'Base',
@@ -146,7 +159,7 @@ export const getAllNetworks = () =>
  * @param {string} networkType - Type of network.
  * @returns If the network is default mainnet.
  */
-export const isDefaultMainnet = (networkType) => networkType === MAINNET;
+export const isDefaultMainnet = (networkType) => networkType === HIZOCO;
 
 /**
  * Check whether the given chain ID is Ethereum Mainnet.
@@ -157,6 +170,8 @@ export const isDefaultMainnet = (networkType) => networkType === MAINNET;
 export const isMainNet = (chainId) => chainId === '0x1';
 
 export const isLineaMainnet = (networkType) => networkType === LINEA_MAINNET;
+
+export const isHZCMainnet = (networkType) => networkType === HIZOCO;
 
 export const getDecimalChainId = (chainId) => {
   if (!chainId || typeof chainId !== 'string' || !chainId.startsWith('0x')) {
@@ -171,6 +186,9 @@ export const isMainnetByChainId = (chainId) =>
 export const isLineaMainnetByChainId = (chainId) =>
   getDecimalChainId(String(chainId)) === String(59144);
 
+export const isHZCByChainId = (chainId) =>
+  getDecimalChainId(String(chainId)) === String(80096);
+
 export const isMultiLayerFeeNetwork = (chainId) =>
   chainId === NETWORKS_CHAIN_ID.OPTIMISM;
 
@@ -184,7 +202,7 @@ export const getTestNetImage = (networkType) => {
   if (
     networkType === SEPOLIA ||
     networkType === LINEA_GOERLI ||
-    networkType === LINEA_SEPOLIA
+    networkType === LINEA_SEPOLIA 
   ) {
     return networksWithImages?.[networkType.toUpperCase()];
   }
@@ -405,10 +423,15 @@ export const getNetworkImageSource = ({ networkType, chainId }) => {
   const defaultNetwork = getDefaultNetworkByChainId(chainId);
   const isDefaultEthMainnet = isDefaultMainnet(networkType);
   const isLineaMainnetNetwork = isLineaMainnet(networkType);
+  const isHizocoMainnetNetwork = isHZCMainnet(networkType);
 
   if (defaultNetwork && isDefaultEthMainnet) {
     return defaultNetwork.imageSource;
   }
+
+  if (defaultNetwork && isHizocoMainnetNetwork) {
+    return defaultNetwork.imageSource;
+  }  
 
   if (defaultNetwork && isLineaMainnetNetwork) {
     return defaultNetwork.imageSource;
